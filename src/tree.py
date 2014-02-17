@@ -1,4 +1,4 @@
-__author__ = 'mike'
+__author__ = 'Mike Schendel'
 
 
 class Tree:

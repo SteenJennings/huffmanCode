@@ -1,4 +1,6 @@
-from bitarray import bitarray
+__author__ = 'Mike Schendel'
+
+from src import binaryEncoding
 from src.huffmanTree import HuffmanTree
 
 __author__ = 'mike'
@@ -25,7 +27,9 @@ def main():
     ht.createTree(freq)
     codes = ht.gen_codes()
     print(codes)
+    print('Encoding file')
     encode_file(file_name, codes)
+    print('Decoding file')
     decode_file("encoding.txt", ht)
 
 
@@ -33,7 +37,7 @@ def decode_file(file_name, huffman_tree):
     with open("decoding.txt", 'w') as output_file:
         buffer = ""
         with open(file_name, 'r') as f:
-            parser = f.read(5000)
+            parser = binaryEncoding.decode(f.read(5000))
             stringToUse = ""
             while len(parser) > 0:
                 stringToUse = stringToUse + parser
@@ -55,7 +59,8 @@ def encode_file(file_name, codes):
                 for char in parser:
                     buffer += codes[char]
                 parser = f.read(5000)
-                output_file.write(buffer)
+                string_to_write = str(binaryEncoding.encode(buffer))
+                output_file.write(string_to_write)
                 buffer = ""
 
 

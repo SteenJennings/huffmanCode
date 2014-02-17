@@ -1,8 +1,6 @@
-__author__ = 'mike'
+__author__ = 'Mike Schendel'
 import operator
 from src.tree import Tree
-
-from bitarray import bitarray
 
 class HuffmanTree:
     def __init__(self):
