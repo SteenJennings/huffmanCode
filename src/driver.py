@@ -1,3 +1,4 @@
+from bitarray import bitarray
 from src.huffmanTree import HuffmanTree
 
 __author__ = 'mike'
@@ -35,7 +36,6 @@ def decode_file(file_name, huffman_tree):
             parser = f.read(5000)
             stringToUse = ""
             while len(parser) > 0:
-                #TODO need to fix if falls between a encoding
                 stringToUse = stringToUse + parser
                 stringTuple = huffman_tree.decode_string(stringToUse)
                 str = stringTuple[0]

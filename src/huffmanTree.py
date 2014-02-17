@@ -2,6 +2,7 @@ __author__ = 'mike'
 import operator
 from src.tree import Tree
 
+from bitarray import bitarray
 
 class HuffmanTree:
     def __init__(self):
