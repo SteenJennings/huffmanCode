@@ -11,9 +11,9 @@ __author__ = 'mike'
 def main():
 
     freq = {}
-    file_name = "text.txt"
+    file_name = "sample_long.txt"
     #get the character frequencies
-    with open(file_name, 'r') as f:
+    with io.open(file_name, 'r', encoding='utf8') as f:
         parser = f.read(5000)
         while len(parser) > 0:
             for char in parser:
@@ -36,8 +36,9 @@ def main():
 
 
 def decode_file(file_name, huffman_tree):
-    with open("decoding.txt", 'w') as output_file:
+    with open("decoding.txt", 'w', encoding='utf8') as output_file:
         buffer = ""
+        #TODO error in this function when calling multiple reads
         with io.open(file_name, 'r', encoding='utf8') as f:
             parser = binaryEncoding.decode(f.read(5000))
             stringToUse = ""
@@ -55,7 +56,7 @@ def decode_file(file_name, huffman_tree):
 def encode_file(file_name, codes):
     with io.open("encoding.txt", 'w', encoding='utf8') as output_file:
         buffer = ""
-        with open(file_name, 'r') as f:
+        with open(file_name, 'r', encoding='utf8') as f:
             parser = f.read(5000)
             while len(parser) > 0:
                 for char in parser:
