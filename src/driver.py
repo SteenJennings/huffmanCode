@@ -1,3 +1,5 @@
+import io
+
 __author__ = 'Mike Schendel'
 
 from src import binaryEncoding
@@ -36,7 +38,7 @@ def main():
 def decode_file(file_name, huffman_tree):
     with open("decoding.txt", 'w') as output_file:
         buffer = ""
-        with open(file_name, 'r') as f:
+        with io.open(file_name, 'r', encoding='utf8') as f:
             parser = binaryEncoding.decode(f.read(5000))
             stringToUse = ""
             while len(parser) > 0:
@@ -51,7 +53,7 @@ def decode_file(file_name, huffman_tree):
 
 
 def encode_file(file_name, codes):
-    with open("encoding.txt", 'w') as output_file:
+    with io.open("encoding.txt", 'w', encoding='utf8') as output_file:
         buffer = ""
         with open(file_name, 'r') as f:
             parser = f.read(5000)
@@ -59,7 +61,7 @@ def encode_file(file_name, codes):
                 for char in parser:
                     buffer += codes[char]
                 parser = f.read(5000)
-                string_to_write = str(binaryEncoding.encode(buffer))
+                string_to_write = binaryEncoding.encode(buffer)
                 output_file.write(string_to_write)
                 buffer = ""
 

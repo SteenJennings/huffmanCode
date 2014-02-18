@@ -1,4 +1,4 @@
-import binascii
+
 
 __author__ = 'Mike Schendel'
 
@@ -11,24 +11,28 @@ def encode(to_encode):
     my_range = int(len(to_encode)/8)
     for j in range (my_range):
         encoded_int = 0
-        for i in range(7):
-            #print((j*8)+i)
+        for i in range(0,7):
+            print((j*8)+i)
             char = to_encode[((j)*8)+i]
             if(char == '1'):
+                ###TODO this contains an error
                 encoded_int = encoded_int | (1<<(7-i))
-        bytes.insert(j, encoded_int)
+        bytes.insert(j, (chr(encoded_int)))
+        print(bin(encoded_int))
 
-    #print((bytearray(bytes)))
-    print(bytes)
-    return (bytes)
+    return ''.join(bytes)
 
 
 def decode(to_decode):
     #go through the list and for each element convert to a binary string
+    decoded_str = ''
     for i in to_decode:
         #i is the first element in to_decode
-        print(bin(i))
-    return to_decode
+        int_to_decode = ord(i)
+        truncatedBin = ("{0:b}".format(int_to_decode))
+        str = ((8-len(truncatedBin)) * '0') + truncatedBin
+        print(str)
+        decoded_str = decoded_str + str
 
 
-
+    return decoded_str
